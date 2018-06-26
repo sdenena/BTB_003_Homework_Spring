@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Update Book Info</title>
+</head>
+<body>
+	<h1><u>Update Book Information</u></h1>
+	<form action="/update/submit" method="post" th:object="${book}" enctype="multipart/form-data">
+		<input type="hidden" th:field="*{id}"><br><br>
+		Title: <input type="text" th:field="*{title}"><br><br>
+		Author: <input type="text" th:field="*{author}"><br><br>
+		Publisher: <input type="text" th:field="*{publisher}"><br><br>
+		Thumbnail:<input type="text" th:field="*{thumbnail}" hidden><br><br>
+		<input type="file" name="file"><br><br>
+		<input type="submit" value="Submit"><br><br>
+	</form>	
+</body>
+</html>

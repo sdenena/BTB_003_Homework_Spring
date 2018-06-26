@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>My Homework03</title>
+	<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{css/mystyle.css}">
+</head>
+<body>
+	<div class="container bg-orange">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="bg-secondary text-center"><u>List of All Book</u></h1>
+				<a href="/create" class="mt-1"><h1>Create New Book</h1></a><br>
+				<table class="table">
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Publisher</th>
+						<th>Thumnail</th>
+						<th>Category</th>
+						<th>Action</th>
+					</tr>
+
+					<tr th:each="book:${books}" th:object="${book}">
+						<td>[[${book.id}]]</td>
+						<td th:text="${book.title}">Title</td>
+						<td th:text="${book.author}">Author</td>
+						<td th:text="${book.publisher}">Publisher</td>
+						<td>
+							<img th:src="${book.thumbnail}" alt="Image unload">
+						</td>
+						<td th:text="${book.category}">Category</td>
+
+						<td>
+							<a  th:href="@{view/{id}(id=${book.id})}"><button class="btn-primary">View</button></a>
+							<a  th:href="@{update-book/{id}(id=${book.id})}"><button class="btn-secondary">Update</button></a>
+							<button class="btn-danger btnDelete" th:attr="data-id=${book.getId()}">Delete</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('body').on('click','.btnDelete',function(){
+			 	var data_id=$(this).attr("data-id");
+			 	//alert($(this).attr("data-id"));
+			 	if(confirm("Do you want delete?")){
+			 		window.location="http://localhost:8080/delete/" + data_id;
+			 	}			 	
+			});
+		});
+		
+	</script>
+
+</body>
+</html>

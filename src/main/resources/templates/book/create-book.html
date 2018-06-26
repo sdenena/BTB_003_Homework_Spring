@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>	
+	<title>Test Multiple-Language</title>
+</head>
+<body>
+	<h1>Create Book</h1>
+	<form action="/create-book/submit" method="post" th:object="${book}" enctype="multipart/form-data">
+		<input type="hidden" th:field="*{id}"> <span style="color:red;" th:if="${#fields.hasErrors()}" th:errors="*{id}">Error</span><br><br>
+		Title:<input type="text" th:field="*{title}"><span style="color:red;" th:if="${#fields.hasErrors()}" th:text="${#fields.errors('title')}">Error</span> <br><br> 
+		Author:<input type="text" th:field="*{author}"><br><br>
+		Publisher:<input type="text" th:field="*{publisher}"><br><br>
+		Thumbnail:<input type="text" th:field="*{thumbnail}" hidden><br><br>
+		<input type="file" name="file"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
